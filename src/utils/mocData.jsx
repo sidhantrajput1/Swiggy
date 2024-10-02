@@ -1,5 +1,6 @@
 
 
+
 const resList = [
     {
     type : "Reastaurant",

@@ -1,6 +1,6 @@
 import RestaurantCard from "./ReastaurantCard";
 import SearchBar from "./SearchBar";
-import resList from "./ResList";
+import resList from "../utils/mocData";
 
 const Body = () =>  {
     return (
