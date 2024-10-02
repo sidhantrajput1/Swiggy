@@ -1,17 +1,34 @@
-import RestaurantCard from "./ReastaurantCard";
+import RestaurantCard from "./RestaurantCard";
 import SearchBar from "./SearchBar";
-import resList from "../utils/mocData";
+import {useState , useEffect}  from "react"
+import  resList from "./../utils/mocData"
 
 const Body = () =>  {
+  // Local State React variable - Super power variable
+  const [listOfRestaurants, setListOfRestraunts] = useState(resList);
+
+
     return (
-      <div className="">
-        <div className="Search-bar mb-12 ">
+      <div className="max-w-[1280px] mx-auto">
+        <div className="Search-bar mb-10 ">
           <SearchBar />
         </div>
-        <div className="grid grid-cols-4 max-w-[1280px] mx-auto gap-10">
+        <div className="mb-4">
+          <button 
+          onClick={() => {
+            const filteredList = listOfRestaurants.filter(
+              (res) => res.data.avgRating > 4
+            );
+            setListOfRestraunts(filteredList);
+          }} 
+          className="border rounded-3xl p-3 font-semibold cursor-pointer">
+            Ratings 4.0+
+          </button>
+        </div>
+        <div className="grid grid-cols-4 gap-10">
           {/* <RestaurantCard resData={resList[0]} /> */}
           {
-            resList.map((restaurant) => {
+            listOfRestaurants.map((restaurant) => {
               return <RestaurantCard resData={restaurant} key={restaurant.data.id}/>
             })
           }
