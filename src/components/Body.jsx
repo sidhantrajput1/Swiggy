@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import SearchBar from "./SearchBar";
 import { useState, useEffect } from "react";
 import Spinner from "./Spinner";
+import Footer from "./Footer";
 
 const Body = () => {
   
@@ -59,11 +60,11 @@ const Body = () => {
 
   return (
     listOfRestaurants && listOfRestaurants.length > 0 ? (
-      <div className="max-w-[1280px] mx-auto">
-        <div className="Search-bar mb-10 ">
+      <div className="">
+        <div className="Search-bar mb-10 max-w-[1280px] mx-auto">
           <SearchBar />
         </div>
-        <div className="mb-4">
+        <div className="mb-4 max-w-[1280px] mx-auto">
           <button
             onClick={() => {
               const filteredList = listOfRestaurants.filter(
@@ -76,10 +77,13 @@ const Body = () => {
             Ratings 4.0+
           </button>
         </div>
-        <div className="grid grid-cols-4 gap-10">
+        <div className="grid grid-cols-4 gap-10 mb-4 max-w-[1280px] mx-auto">
           {listOfRestaurants.map((restaurant, idx) => {
             return <RestaurantCard resData={restaurant} key={idx} />;
           })}
+        </div>
+        <div className="">
+          <Footer />
         </div>
       </div>
     ) : (
