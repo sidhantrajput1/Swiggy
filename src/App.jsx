@@ -1,6 +1,9 @@
 import React from "react";
 import Header from "./components/Header";
 import Body from "./components/Body";
+import { BrowserRouter, createBrowserRouter, Route, Routes } from "react-router-dom";
+import Signup from "./components/Signup";
+import Footer from "./components/Footer";
 
 /* 
 
@@ -25,10 +28,17 @@ Footer
 
 
 const AppLayout = () => {
+
+  // const router = createBrowserRouter()
+
   return (
     <div className="app">
-        <Header/>
-        <Body/>
+       <BrowserRouter>
+        <Routes>
+          <Route path="/signup"  element={<Signup />} />
+          <Route path="/" element={<> <Header/> <Body/></>}/>
+        </Routes>
+       </BrowserRouter>
     </div>
   )
 }
