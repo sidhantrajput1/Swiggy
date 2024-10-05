@@ -8,6 +8,8 @@ const Header = () => {
   const [isLoggedIn , setIsLoggedIn] = useState(false);
   const navigate  = useNavigate();
 
+  const [btnNameReact, setBtnNameReact] = useState("Login");
+
 
   const clickingSingup = (e)=>{
     navigate("/signup")
@@ -28,14 +30,17 @@ const Header = () => {
               {
                 isLoggedIn ? (
                   <>
-                  <p className="bg-orange-400  p-2  rounded-full">SK</p></>
+                  <p className="bg-orange-400  p-2  rounded-full">SK</p>
+                  </>
                 ) : (
                   <>
                   <button onClick={clickingSingup} className=" hover:text-white  bg-orange-400 p-2 rounded-lg ">Signup</button>
                   </>
                 )  
-
               }
+              <button className="login" onClick={() => {
+                btnNameReact === "Login" ? setBtnNameReact("Logout") : setBtnNameReact("Login")
+              }}>{btnNameReact}</button>
           </ul>
         </div>  
       </div>

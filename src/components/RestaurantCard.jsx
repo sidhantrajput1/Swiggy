@@ -2,11 +2,8 @@ import { CDN_URL } from "../utils/constants";
 
 const RestaurantCard = ( {resData }) => {
 
-  // console.log(resData?.data);
   console.log(resData?.info);
-    // console.log(props);
     const {name , cuisines ,avgRating, costForTwo , cloudinaryImageId } = resData?.info || resData?.data;
-    // console.log(name,cuisines,avgRating,costForTwo,deliveryTime);
 
     // const {deliveryTime} = resData.data.sla;
     let newCuisines = cuisines.length > 3 ? [cuisines[0], cuisines[1], cuisines[2]] : cuisines;

@@ -9,6 +9,7 @@ const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [isLoading, setIsLoading] = useState(true); 
   const [error, setError] = useState(null); 
+  const [searchText, setSearchText] = useState("");
 
   
   useEffect(() => {
@@ -62,13 +63,18 @@ const Body = () => {
     listOfRestaurants && listOfRestaurants.length > 0 ? (
       <div className="">
         <div className="Search-bar mb-10 max-w-[1280px] mx-auto">
-          <SearchBar />
+          <SearchBar
+            listOfRestaurants={listOfRestaurants}
+            setListOfRestaurants={setListOfRestaurants}
+            searchText={searchText}
+            setSearchText={setSearchText}
+          />
         </div>
         <div className="mb-4 max-w-[1280px] mx-auto">
           <button
             onClick={() => {
               const filteredList = listOfRestaurants.filter(
-                (res) => res.info?.avgRating > 4
+                (res) => res.info?.avgRating > 4.5
               );
               setListOfRestaurants(filteredList);
             }}
@@ -86,9 +92,7 @@ const Body = () => {
           <Footer />
         </div>
       </div>
-    ) : (
-      <h1>No restaurants found</h1>
-    )
+    ) : null
   );
 };
 
