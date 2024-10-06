@@ -4,6 +4,7 @@ import Body from "./components/Body";
 import { BrowserRouter, createBrowserRouter, Route, Routes } from "react-router-dom";
 import Signup from "./components/Signup";
 import Footer from "./components/Footer";
+import Login from "./components/login";
 
 /* 
 
@@ -36,6 +37,7 @@ const AppLayout = () => {
        <BrowserRouter>
         <Routes>
           <Route path="/signup"  element={<Signup />} />
+          <Route path="/login"  element={<Login />} />
           <Route path="/" element={<> <Header/> <Body/> <Footer/> </>}/>
         </Routes>
        </BrowserRouter>

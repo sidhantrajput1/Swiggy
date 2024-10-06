@@ -15,6 +15,10 @@ const Header = () => {
     navigate("/signup")
   }
 
+  const clickingLogin = (e) => {
+    navigate("/login")
+  }
+
 
     return (
       <div className="header flex justify-between items-center p-3 mb-4 max-w-[1280px] mx-auto ">
@@ -38,10 +42,24 @@ const Header = () => {
                   </>
                 )  
               }
-              <button className="login h-8 w-20 font-semibold bg-orange-400 rounded hover:text-white " 
+              
+              {
+                isLoggedIn ? (
+                  <>
+                  <p className="bg-orange-400  p-2  rounded-full">Logout</p>
+                  </>
+                ) : (
+                  <>
+                  <button onClick={clickingLogin} className=" login h-8 w-20 font-semibold  bg-orange-400 rounded hover:text-white  ">Login</button>
+                  </>
+                )  
+              }
+
+              {/* <button className="login h-8 w-20 font-semibold bg-orange-400 rounded hover:text-white " 
               onClick={() => {
                 btnNameReact === "Login" ? setBtnNameReact("Logout") : setBtnNameReact("Login")
-              }}>{btnNameReact}</button>
+              }}>{btnNameReact}
+              </button> */}
           </ul>
         </div>  
       </div>
