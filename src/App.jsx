@@ -36,7 +36,7 @@ const AppLayout = () => {
        <BrowserRouter>
         <Routes>
           <Route path="/signup"  element={<Signup />} />
-          <Route path="/" element={<> <Header/> <Body/></>}/>
+          <Route path="/" element={<> <Header/> <Body/> <Footer/> </>}/>
         </Routes>
        </BrowserRouter>
     </div>

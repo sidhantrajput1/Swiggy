@@ -34,11 +34,12 @@ const Header = () => {
                   </>
                 ) : (
                   <>
-                  <button onClick={clickingSingup} className=" hover:text-white  bg-orange-400 p-2 rounded-lg ">Signup</button>
+                  <button onClick={clickingSingup} className=" login h-8 w-20 font-semibold  bg-orange-400 rounded hover:text-white  ">Signup</button>
                   </>
                 )  
               }
-              <button className="login" onClick={() => {
+              <button className="login h-8 w-20 font-semibold bg-orange-400 rounded hover:text-white " 
+              onClick={() => {
                 btnNameReact === "Login" ? setBtnNameReact("Logout") : setBtnNameReact("Login")
               }}>{btnNameReact}</button>
           </ul>

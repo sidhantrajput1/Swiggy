@@ -88,9 +88,6 @@ const Body = () => {
             return <RestaurantCard resData={restaurant} key={idx} />;
           })}
         </div>
-        <div className="">
-          <Footer />
-        </div>
       </div>
     ) : null
   );
