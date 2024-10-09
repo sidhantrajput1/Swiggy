@@ -26,7 +26,7 @@ const Body = () => {
         const json = await response.json();
         
        
-        console.log(json);
+        // console.log(json);
 
       
         const restaurants = json?.data?.cards?.find(
@@ -74,7 +74,7 @@ const Body = () => {
           <button
             onClick={() => {
               const filteredList = listOfRestaurants.filter(
-                (res) => res.info?.avgRating > 4.5
+                (res) => res.info?.avgRating > 4.0
               );
               setListOfRestaurants(filteredList);
             }}

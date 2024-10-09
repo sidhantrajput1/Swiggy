@@ -5,7 +5,9 @@ import { BrowserRouter, createBrowserRouter, Route, Routes } from "react-router-
 import Signup from "./components/Signup";
 import Footer from "./components/Footer";
 import Login from "./components/login";
-
+import About from "./components/About";
+import Contact from "./components/Contact";
+import Error from "./components/Error";
 /* 
 
 Header
@@ -38,7 +40,9 @@ const AppLayout = () => {
         <Routes>
           <Route path="/signup"  element={<Signup />} />
           <Route path="/login"  element={<Login />} />
-          <Route path="/" element={<> <Header/> <Body/> <Footer/> </>}/>
+          <Route path="/about"  element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/" element={<> <Header/> <Body/> <Footer/>  </>}/>
         </Routes>
        </BrowserRouter>
     </div>

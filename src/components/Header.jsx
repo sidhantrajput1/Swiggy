@@ -1,6 +1,6 @@
 import { useNavigate, useSearchParams } from "react-router-dom"
 import { LOGO_URL } from "../utils/constants"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const Header = () => {
 
@@ -9,6 +9,13 @@ const Header = () => {
   const navigate  = useNavigate();
 
   const [btnNameReact, setBtnNameReact] = useState("Login");
+
+  // if no dependency array => useEffect is called on evry render
+  // if dependency array is empty = [] => useEffect is called initial render [just ones] 
+  // if dependency array is [btnNameReact] => called every time btnNameReact is Updated 
+  useEffect( () => {
+    console.log("useEffect Called");
+  }, [btnNameReact]);
 
 
   const clickingSingup = (e)=>{
