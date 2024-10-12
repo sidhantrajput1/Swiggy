@@ -1,53 +1,41 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Routes, Outlet } from "react-router-dom";
 import Header from "./components/Header";
 import Body from "./components/Body";
-import { BrowserRouter, createBrowserRouter, Route, Routes } from "react-router-dom";
 import Signup from "./components/Signup";
 import Footer from "./components/Footer";
-import Login from "./components/login";
+import Login from "./components/Login";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
-/* 
-
-Header
----logo
----nav-items
-Body
----Search
----Restaurants Container
----Restaurant Card
-    --img
-    --Name of res, star rating , cuisine
-    --
-Footer
----Copyright
----Links
----Address
----Contacts
-
-*/
-
-
+import RestaurantMenu from "./components/RestaurantMenu";
 
 const AppLayout = () => {
-
-  // const router = createBrowserRouter()
-
   return (
     <div className="app">
-       <BrowserRouter>
-        <Routes>
-          <Route path="/signup"  element={<Signup />} />
-          <Route path="/login"  element={<Login />} />
-          <Route path="/about"  element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/" element={<> <Header/> <Body/> <Footer/>  </>}/>
-        </Routes>
-       </BrowserRouter>
+      <Header />
+      <Outlet /> {/* This is where nested routes will be rendered */}
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
+const App = () => {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<AppLayout />}>
+          <Route index element={<Body />} /> {/* Default route for "/" */}
+          <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="/restaurants/:resId" element={<RestaurantMenu />} />
+        </Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="*" element={<Error />} /> {/* Catch-all for undefined routes */}
+      </Routes>
+    </Router>
+  );
+};
 
-export default AppLayout
+export default App;

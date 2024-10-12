@@ -1,6 +1,7 @@
 import { useNavigate, useSearchParams } from "react-router-dom"
 import { LOGO_URL } from "../utils/constants"
 import { useEffect, useState } from "react"
+import {Link} from "react-router-dom"
 
 const Header = () => {
 
@@ -34,9 +35,15 @@ const Header = () => {
         </div>
         <div>
           <ul className="nav-items flex list-none space-x-5 items-center justify-between font-semibold cursor-pointer">
-              <li className=" hover:text-orange-400">Home</li>
-              <li className=" hover:text-orange-400">About Us</li>
-              <li className=" hover:text-orange-400">Contacts Us</li>
+              <li className=" hover:text-orange-400">
+                <Link to="/">Home</Link>
+              </li>
+              <li className=" hover:text-orange-400">
+                <Link to="/about">About Us</Link>
+              </li>
+              <li className=" hover:text-orange-400">
+                <Link to="/contact">Contacts Us</Link>
+              </li>
               <li className=" hover:text-orange-400">Cart</li>
               {
                 isLoggedIn ? (

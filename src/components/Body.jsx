@@ -2,11 +2,11 @@ import RestaurantCard from "./RestaurantCard";
 import SearchBar from "./SearchBar";
 import { useState, useEffect } from "react";
 import Spinner from "./Spinner";
-import Footer from "./Footer";
 
 const Body = () => {
   
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [isLoading, setIsLoading] = useState(true); 
   const [error, setError] = useState(null); 
   const [searchText, setSearchText] = useState("");
@@ -35,6 +35,7 @@ const Body = () => {
 
         if (restaurants) {
           setListOfRestaurants(restaurants);
+          
         } else {
           throw new Error("Restaurants data not found");
         }
@@ -49,6 +50,12 @@ const Body = () => {
     fetchData();
   }, []);
 
+  const handlefilter = () => {
+    const filteredList = listOfRestaurants.filter(
+      (res) => res.info?.avgRating > 4.0
+    );
+    setListOfRestaurants(filteredList);
+  }
   
   if (error) {
     return <h1>{error}</h1>;
@@ -72,12 +79,7 @@ const Body = () => {
         </div>
         <div className="mb-4 max-w-[1280px] mx-auto">
           <button
-            onClick={() => {
-              const filteredList = listOfRestaurants.filter(
-                (res) => res.info?.avgRating > 4.0
-              );
-              setListOfRestaurants(filteredList);
-            }}
+            onClick={handlefilter}
             className="border rounded-3xl p-3 font-semibold cursor-pointer"
           >
             Ratings 4.0+

@@ -8,3 +8,5 @@ export const LOGO_URL =
 //     CDN_URL,
 //     LOGO_URL
 // }
+
+export const MENU_API = "https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.6010893&lng=77.4464163&restaurantId="

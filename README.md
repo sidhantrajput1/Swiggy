@@ -18,3 +18,42 @@ Currently, two official plugins are available:
   (Normal Js Function -> Facebooks Developers)
    -- useState() -> Super powerfull function
    -- useEffect()
+
+
+
+
+
+
+
+
+
+
+   const appRouter = createBrowserRouter([
+  {
+    path : "/",
+    element : < AppLayout />,
+    children : [
+      {
+        path : "/",
+        element : <Body />
+      },
+      {
+        path : "/about",
+        element : < About />
+      },
+      {
+        path : "/contacts",
+        element : <Contact />
+      }
+    ],
+    errorElement : <Error />
+  },
+  {
+    path : "/login",
+    element : <Login />
+  },
+  {
+    path : "/signup",
+    element : <Signup />
+  },
+])
