@@ -1,57 +1,51 @@
-import {useState,  useEffect } from "react"; 
+import { useEffect, useState } from "react";
 import Spinner from "./Spinner";
-import { useParams } from "react-router-dom";
-import { MENU_API } from "../utils/constants";
+
+const Restaurantmenu = () => {
+  const [resInfo, setResInfo] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    fetchMenu();
+  }, []);
 
 
-const RestaurantMenu = () => {
-    const [resInfo, setResInfo] = useState(null);
-    const [isLoading, setIsLoading] = useState(true); 
 
-    const {resId} = useParams();
-    
+  const fetchMenu = async () => {
+    const data = await fetch(
+      "https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.6010893&lng=77.4464163&restaurantId=516420&submitAction=ENTER"
+    );
 
-    useEffect( () => {
-        const fetchMenu = async() => {
-            try {
-                const data = await fetch( MENU_API + resId)
-                const json =await data.json();
-                setResInfo(json.data?.cards[1]?.card?.card?.info)
-            } catch (error) {
-                console.error("Error fetching the menu: ",error)
-            } finally {
-                setIsLoading(false)
-            }
-        }
-        fetchMenu();
-    },[]);
+    const json = await data.json();
 
-    
+    console.log(json);
+    console.log(json?.data.cards[2]?.card.card.info.name);
+    console.log(json?.data.cards[2]?.card.card.info.city);
+    console.log(json?.data.cards[2]?.card.card.info.costForTwo);
+    setResInfo(json.data)
+  };
 
-    if (isLoading) {
-        return <Spinner/>;
-    }
+  if (isLoading === null) {
+    return <Spinner/>;
+  }
 
-    // const [itemsCard] = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card
-    const menuItems = resInfo?.menuItems || [];
-    console.log(menuItems);
-    
-    return (
-        <div>
-            <h1>{resInfo?.name}</h1>
-            <h3>{resInfo?.cuisines.join(", ")}</h3>
-            <h3>{resInfo?.costForTwoMessage}</h3>
-            <ul>
-            {menuItems.length > 0 ? (
-                    menuItems.map((item) => (
-                        <li key={item.id}>{item?.name}</li>
-                    ))
-                ) : (
-                    <li>No Menu items Available</li>
-                )}
-            </ul>
-        </div>
-    )
-}
+  const name = resInfo?.cards[2]?.card?.card?.info.name;
+  const cuisines = resInfo?.cards[2]?.card?.card?.info.cuisines;
+  const costForTwoMessage = resInfo?.cards[2]?.card?.card?.info.costForTwoMessage;
 
-export default RestaurantMenu;
+  return  (
+    <div className="">
+      <h1>{name}</h1>
+      <h1>{costForTwoMessage}</h1>
+      {/* <h2>{cuisines.join(", ")}</h2> */}
+      <ul>
+        <li>Biryani</li>
+        <li>Burgers</li>
+        <li>Diet Coke</li>
+      </ul>
+    </div>
+  )  
+  ;
+};
+
+export default Restaurantmenu;
